@@ -1,7 +1,7 @@
 ## PG-Simulator (PaymentGateway)
 
 ### Description
-Loopback BE 과정을 위해 PaymentGateway 를 시뮬레이션하는 App Module 입니다.
+PaymentGateway 를 시뮬레이션하는 App Module 입니다.
 `local` 프로필로 실행 권장하며, 커머스 서비스와의 동시 실행을 위해 서버 포트가 조정되어 있습니다.
 - server port : 8082
 - actuator port : 8083
