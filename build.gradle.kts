@@ -52,6 +52,19 @@ subprojects {
     apply(plugin = "jacoco")
     apply(plugin = "org.jlleitschuh.gradle.ktlint")
 
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(21)
+        }
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmToolchain(21)
+            freeCompilerArgs.addAll("-Xjsr305=strict")
+        }
+    }
+
     dependencyManagement {
         imports {
             mavenBom("org.springframework.cloud:spring-cloud-dependencies:${project.properties["springCloudDependenciesVersion"]}")

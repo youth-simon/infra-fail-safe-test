@@ -1,0 +1,6 @@
+package com.failsafe.config.redis
+
+data class RedisNodeInfo(
+    val host: String,
+    val port: Int,
+)
