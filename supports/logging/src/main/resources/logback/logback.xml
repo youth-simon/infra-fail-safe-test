@@ -2,7 +2,7 @@
 <configuration>
     <springProfile name="local,local-dev,test">
         <include resource="appenders/plain-console-appender.xml"/>
-        <logger name="com.infra-fail-safe" level="DEBUG"/>
+        <logger name="com.failsafe" level="DEBUG"/>
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
         </root>
@@ -12,7 +12,7 @@
         <include resource="appenders/json-console-appender.xml"/>
         <include resource="appenders/slack-appender.xml"/>
         <include resource="properties/slack-log-dev.xml"/>
-        <logger name="com.infra-fail-safe" level="DEBUG"/>
+        <logger name="com.failsafe" level="DEBUG"/>
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
             <!-- /properties.slack-log-dev.xml 설정 후 활성화
@@ -25,7 +25,7 @@
         <include resource="appenders/json-console-appender.xml"/>
         <include resource="appenders/slack-appender.xml"/>
         <include resource="properties/slack-log-qa.xml"/>
-        <logger name="com.infra-fail-safe" level="INFO"/>
+        <logger name="com.failsafe" level="INFO"/>
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
             <!-- /properties.slack-log-qa.xml 설정 후 활성화
@@ -38,7 +38,7 @@
         <include resource="appenders/json-console-appender.xml"/>
         <include resource="appenders/slack-appender.xml"/>
         <include resource="properties/slack-log-prd.xml"/>
-        <logger name="com.infra-fail-safe" level="INFO"/>
+        <logger name="com.failsafe" level="INFO"/>
         <root level="INFO">
             <appender-ref ref="CONSOLE"/>
             <!-- /properties.slack-log-prd.xml 설정 후 활성화

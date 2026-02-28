@@ -1,10 +1,9 @@
 package com.failsafe.interfaces.api.payment
 
 import com.failsafe.application.payment.PaymentApplicationService
-import com.failsafe.interfaces.api.ApiResponse
+import com.failsafe.application.scenario.SimulatorBehavior
 import com.failsafe.domain.user.UserInfo
-import com.failsafe.support.error.CoreException
-import com.failsafe.support.error.ErrorType
+import com.failsafe.interfaces.api.ApiResponse
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
@@ -17,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/api/v1/payments")
 class PaymentApi(
     private val paymentApplicationService: PaymentApplicationService,
+    private val simulatorBehavior: SimulatorBehavior,
 ) {
     @PostMapping
     fun request(
@@ -25,13 +25,7 @@ class PaymentApi(
     ): ApiResponse<PaymentDto.TransactionResponse> {
         request.validate()
 
-        // 100ms ~ 500ms 지연
-        Thread.sleep((100..500L).random())
-
-        // 40% 확률로 요청 실패
-        if ((1..100).random() <= 40) {
-            throw CoreException(ErrorType.INTERNAL_ERROR, "현재 서버가 불안정합니다. 잠시 후 다시 시도해주세요.")
-        }
+        simulatorBehavior.applySimulation("payment")
 
         return paymentApplicationService.createTransaction(request.toCommand(userInfo.userId))
             .let { PaymentDto.TransactionResponse.from(it) }
