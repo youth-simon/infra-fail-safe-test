@@ -9,5 +9,8 @@ build/
 .idea/
 *.iml
 
+# Claude
+.claude/
+
 # OS
 .DS_Store
